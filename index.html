@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+
+
+
+   <!-- ===================================================================
+         1. CONFIGURATION DE BASE
+         =================================================================== -->
+    
+    <!-- Définit l'encodage des caractères (indispensable pour les accents é, à, ç...) -->
+    <meta charset="UTF-8">
+
+    <!-- Rend le site Responsive (s'adapte aux mobiles). 
+         "user-scalable=no" donne l'impression d'une application native (empêche le zoom manuel) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Force Internet Explorer à utiliser son moteur de rendu le plus récent (Edge) -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <!-- ===================================================================
+         2. SEO (RÉFÉRENCEMENT GOOGLE)
+         =================================================================== -->
+
+    <!-- Le titre qui apparaît dans l'onglet du navigateur et dans les résultats Google -->
+    <title>Event-Control • Système de Contrôle d'Accès Sécurisé</title>
+
+    <!-- La description courte sous le titre dans Google (150-160 caractères max conseillé) -->
+    <meta name="description" content="Solution de sécurité événementielle . Scanner de billets inviolable, contrôle d'accès en temps réel et gestion anti-fraude pour vos événements VIP.">
+
+    <!-- Mots-clés pour les anciens moteurs de recherche (moins utile aujourd'hui mais ne fait pas de mal) -->
+    <meta name="keywords" content="billetterie , sécurité événement, contrôle d'accès, scanner QR code, anti-fraude, ProElites-Services, Event-Control">
+
+    <!-- Indique à Google d'indexer la page et de suivre les liens -->
+    <meta name="robots" content="index, follow">
+
+    <!-- L'auteur du site -->
+    <meta name="author" content="ProElites-Services by KOUANVI BILL-CATARIA">
+
+
+    <!-- ===================================================================
+         3. RÉSEAUX SOCIAUX (OPEN GRAPH)
+         C'est ce qui gère l'aperçu quand tu envoies le lien sur WhatsApp, Facebook, LinkedIn
+         =================================================================== -->
+
+    <!-- Type de contenu (site web) -->
+    <meta property="og:type" content="website">
+
+    <!-- L'URL officielle de ton site (Remplace par ton vrai lien quand tu l'auras, ex: https://monsite.com) -->
+    <meta property="og:url" content="https://proelites-services.com/">
+
+    <!-- Le titre qui s'affiche en gras dans l'aperçu WhatsApp/Facebook -->
+    <meta property="og:title" content="ProElites • La Sécurité Événementielle Réinventée">
+
+    <!-- La description sous le titre dans l'aperçu -->
+    <meta property="og:description" content="Découvrez notre technologie de scan inviolable. Zéro fraude, 100% de revenus sécurisés.">
+
+    <!-- L'IMAGE qui s'affiche dans l'aperçu WhatsApp (Très important !). 
+         Doit être une URL absolue (ex: https://monsite.com/image.jpg) -->
+    <meta property="og:image" content="https://res.cloudinary.com/dbvthdhwb/image/upload/v1766517002/Generated_Image_December_23_2025_-_8_05PM_ox96vf.png">
+
+
+    <!-- ===================================================================
+         4. TWITTER CARDS (X)
+         Configuration spécifique pour le partage sur Twitter/X
+         =================================================================== -->
+    
+    <!-- Définit une grande image pour l'aperçu -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Event-Control System • ProElites-Services">
+    <meta name="twitter:description" content="Sécurisez vos événements avec notre technologie de pointe.">
+    <!-- Même image que pour Facebook/WhatsApp -->
+    <meta name="twitter:image" content="https://res.cloudinary.com/dbvthdhwb/image/upload/v1766517002/Generated_Image_December_23_2025_-_8_05PM_ox96vf.png">
+
+
+    <!-- ===================================================================
+         5. MOBILE & APP (DESIGN IPHONE/ANDROID)
+         Pour que le site ressemble à une vraie appli quand on l'ajoute à l'écran d'accueil
+         =================================================================== -->
+
+    <!-- La couleur de la barre d'adresse du navigateur (Chrome mobile) - Ici ton noir profond -->
+    <meta name="theme-color" content="#050505">
+
+    <!-- Active le mode "Web App" sur iPhone (enlève l'interface Safari si ajouté à l'accueil) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Rend la barre de statut (heure, batterie) transparente sur iPhone -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Le nom de l'app sous l'icône sur l'écran d'accueil -->
+    <meta name="apple-mobile-web-app-title" content="EventControl">
+
+
+    <!-- ===================================================================
+         LIENS CSS & FONTS (Déjà présents dans ton code, je les rappelle ici)
+         =================================================================== -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- FAVICON (L'icône dans l'onglet du navigateur)
+         Tu devras remplacer 'favicon.ico' par le chemin de ton logo -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/4059/4059239.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    :root {
+        --primary: #00ffa2;
+        --accent: #3c40c6;
+        --bg: #050505;
+        --card-bg: rgba(15, 15, 15, 0.8);
+        --border: rgba(255, 255, 255, 0.08);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+
+    body {
+        margin: 0; padding: 0;
+        background-color: var(--bg);
+        color: white;
+        font-family: 'Outfit', sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    /* --- NAVIGATION --- */
+    .elite-nav {
+        position: fixed; top: 0; width: 100%; height: 70px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .nav-container {
+        width: 100%; max-width: 1200px; padding: 0 20px;
+        display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; }
+    .nav-logo .dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+    .nav-logo span { font-weight: 900; letter-spacing: 1px; font-size: 18px; }
+    .nav-logo .tagline { font-weight: 300; font-size: 11px; opacity: 0.5; text-transform: uppercase; margin-left: 10px; border-left: 1px solid #333; padding-left: 10px; }
+    
+    .nav-cta {
+        background: white; color: black; padding: 8px 18px; border-radius: 50px;
+        font-size: 12px; font-weight: 800; text-transform: uppercase; text-decoration: none;
+        transition: 0.3s;
+    }
+    .nav-cta:hover { background: var(--primary); transform: scale(1.05); }
+
+    /* --- FOND --- */
+    .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; z-index: -2; }
+    .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 10%, #1a1a2e 0%, transparent 40%), radial-gradient(circle at 90% 90%, #0a2e21 0%, transparent 40%); z-index: -1; }
+
+    .reveal { opacity: 0; transform: translateY(25px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* --- HEADER --- */
+    header { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 15px; padding-top: 70px; }
+    .badge { background: rgba(0, 255, 162, 0.08); color: var(--primary); padding: 10px 24px; border-radius: 50px; font-weight: 800; font-size: clamp(10px, 2vw, 12px); text-transform: uppercase; letter-spacing: 3px; border: 1px solid rgba(0, 255, 162, 0.2); margin-bottom: 25px; }
+    h1 { font-size: clamp(38px, 8vw, 90px); margin: 0; font-weight: 900; line-height: 1; letter-spacing: -3px; }
+    header p { font-size: clamp(15px, 2.2vw, 22px); opacity: 0.7; max-width: 800px; margin-top: 25px; font-weight: 300; }
+
+    /* --- SECTIONS --- */
+    .section { padding: 100px 20px; max-width: 1200px; margin: auto; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-size: clamp(28px, 5vw, 45px); font-weight: 900; margin: 0; letter-spacing: -1px; }
+    /* NOUVEAU STYLE POUR LES SOUS-TITRES */
+    .section-title p { margin-top: 15px; font-size: clamp(14px, 2vw, 18px); color: var(--primary); opacity: 0.8; font-weight: 300; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .feature-card { background: var(--card-bg); padding: 50px 40px; border-radius: 40px; border: 1px solid var(--border); backdrop-filter: blur(30px); transition: 0.4s; }
+    .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+    .feature-card h3 { color: #fff; font-size: 24px; margin: 0 0 15px 0; font-weight: 700; }
+    .feature-card p { opacity: 0.5; font-size: 16px; margin: 0; }
+
+    /* --- SIMULATEUR --- */
+    .simulator-layout { display: flex; flex-wrap: wrap; gap: 60px; align-items: center; justify-content: center; }
+    .controls-panel { flex: 1; min-width: 300px; max-width: 480px; display: flex; flex-direction: column; gap: 12px; }
+    .btn-state { display: flex; align-items: center; padding: 22px 28px; border-radius: 24px; background: var(--card-bg); border: 1px solid var(--border); color: white; cursor: pointer; font-family: inherit; font-weight: 600; transition: 0.3s; font-size: 15px; text-align: left; }
+    .btn-state:hover { border-color: var(--primary); transform: translateX(8px); }
+    .btn-state.active { border-color: var(--primary); background: rgba(0, 255, 162, 0.1); box-shadow: 0 0 30px rgba(0, 255, 162, 0.1); }
+    .btn-state span { width: 12px; height: 12px; border-radius: 50%; margin-right: 18px; flex-shrink: 0; }
+    #sensorFeedback { height: 40px; margin-top: 15px; font-size: 13px; font-weight: 700; color: var(--primary); opacity: 0.5; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    
+    /* Le conteneur du téléphone quand il n'est pas en popup (desktop) */
+    .phone-container-desktop { position: relative; display: flex; justify-content: center; width: 100%; max-width: 320px; }
+
+    /* --- ELEMENTS DU POPUP FLOTTANT (Sortis du flux normal) --- */
+    .phone-overlay {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        z-index: 10000;
+        display: none;
+        flex-direction: column; align-items: center; justify-content: center;
+        opacity: 0; transition: opacity 0.4s ease;
+    }
+    .phone-overlay.active { display: flex; opacity: 1; }
+
+    .phone-mockup { 
+        width: 100%; height: 620px; 
+        border: 12px solid #1a1a1a; border-radius: 50px; background: #000; 
+        position: relative; box-shadow: 0 40px 80px rgba(0,0,0,0.8); overflow: hidden; 
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
+    /* --- Style Mobile Ajusté (UN PEU PLUS PETIT) --- */
+    .phone-overlay .phone-mockup {
+        width: 85vw; /* Réduit de 95vw */
+        height: 80vh; /* Réduit de 90vh */
+        max-width: 400px; /* Limite la largeur max */
+        border-width: 6px; 
+        border-color: #222;
+        transform: translateY(100px) scale(0.9);
+    }
+    .phone-overlay.active .phone-mockup { transform: translateY(0) scale(1); }
+
+    .phone-notch { height: 22px; width: 120px; background: #1a1a1a; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
+    
+    .close-area { 
+        position: absolute; top: 20px; right: 20px; 
+        width: 45px; height: 45px; 
+        border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.1);
+        display: flex; align-items: center; justify-content: center; 
+        cursor: pointer; z-index: 10001; transition: 0.3s;
+    }
+    .close-area:hover { background: white; }
+    .close-area:hover i { color: black; }
+    .close-area i { color: white; }
+    
+    .btn-mobile-preview { display: none; width: 100%; padding: 18px; background: linear-gradient(90deg, rgba(0,255,162,0.1), transparent); border: 1px solid var(--primary); color: var(--primary); border-radius: 20px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-top: 10px; font-size: 13px; letter-spacing: 1px; transition: 0.3s; }
+    .btn-mobile-preview:active { transform: scale(0.98); background: var(--primary); color: black; }
+    
+    /* --- AMELIORATION IFRAME FLUIDE --- */
+    iframe { width: 100%; height: 100%; border: none; background: #000; transition: opacity 0.3s ease; opacity: 1; }
+
+    /* --- CONTACT --- */
+    .form-card { background: var(--card-bg); padding: 50px 40px; border-radius: 40px; border: 1px solid var(--border); max-width: 600px; margin: 0 auto; }
+    .form-group { margin-bottom: 25px; }
+    .form-group label { display: block; font-size: 11px; text-transform: uppercase; color: var(--primary); letter-spacing: 2px; margin-bottom: 10px; font-weight: 700; }
+    .form-group input, .form-group textarea { width: 100%; padding: 18px; background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 20px; color: white; font-family: inherit; font-size: 16px; transition: 0.3s; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+    .btn-send { width: 100%; padding: 22px; border-radius: 60px; border: none; background: var(--primary); color: #000; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.4s; font-size: 16px; }
+
+    .final-footer { background: linear-gradient(to top, #0a0a0a, transparent); padding: 80px 20px 40px 20px; text-align: center; border-top: 1px solid var(--border); }
+    .footer-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 40px; }
+    .f-contact { text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; transition: 0.3s; opacity: 0.7; font-size: 14px; }
+    .f-contact:hover { opacity: 1; color: var(--primary); }
+    .copyright { font-size: 10px; opacity: 0.3; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 850px) {
+        .simulator-layout { flex-direction: column; }
+        .controls-panel { width: 100%; }
+        .phone-container-desktop { display: none; }
+        .btn-mobile-preview { display: block; }
+        .nav-logo .tagline { display: none; }
+        .section { padding: 60px 20px; }
+        .footer-contacts { flex-direction: column; gap: 15px; align-items: center; }
+    }
+    
+    @media (min-width: 851px) {
+        .phone-overlay { display: none !important; }
+        .phone-container-desktop { display: flex; }
+    }
+</style>
+</head>
+<body>
+
+    <nav class="elite-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="dot"></div>
+                <span>ProElites-Services</span>
+                <div class="tagline">EVENT-Control System</div>
+            </a>
+            <a href="#contactForm" class="nav-cta">Contacts</a>
+        </div>
+    </nav>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="badge">Le futur de l'èvenementiel • TICKETING</div>
+        <h1 class="reveal">EVENT-CONTROL</h1>
+        <p class="reveal">Élevez la sécurité de vos accès au rang d'excellence. L’inviolabilité au service de votre rentabilité. 
+                          Event-Control déploie un bouclier technologique qui neutralise la fraude avant qu’elle n’atteigne vos portes. 
+                          Sécurisez chaque accès, protégez chaque revenu, maîtrisez chaque seconde.        
+        </p>
+    </header>
+
+    <section class="section">
+        <div class="section-title reveal"><h2>Architecture de pointe</h2></div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <h3>Inviolabilité</h3>
+                <p>Chaque billet est protégé par une signature numérique exclusive, garantissant une sécurité totale.
+                  Seul votre scanner officiel certifié peut activer un billet, neutralisant instantanément toute tentative 
+                  de fraude ou d’utilisation non autorisée.</p>
+            </div>
+            <div class="feature-card reveal">
+                <h3>Intelligence Cloud</h3>
+                <p>Un contrôle intelligent, instantané et sans compromis.
+                  Notre technologie analyse en continu les horaires, les zones (standard, VIP, accès restreints), les status des tickets
+                  et bloque automatiquement toute tentative de duplication ou de réutilisation, 
+                  grâce à uneinfrastructure Cloud sécurisée haute performance .</p>
+            </div>
+            <div class="feature-card reveal">
+                <h3>Interface Elite</h3>
+                <p>Pensée pour les événements d’exception.
+                   Une interface fluide, rapide et intuitive, enrichie de retours sensoriels intelligents (sons et vibrations), 
+                   permettant aux équipes de gérer des flux massifs avec une précision absolue et zéro friction.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title reveal">
+            <h2>Laboratoire Interactif</h2>
+            <!-- AJOUT DE LA PHRASE ICI -->
+            <p>Découvrez, à travers cette simulation, le fonctionnement précis de notre scanner officiel.
+               Visualisez en temps réel les différents scénarios de validation tels qu’ils apparaissent lors d’un contrôle réel sur site.
+            </p>
+        </div>
+        <div class="simulator-layout reveal">
+            <div class="controls-panel">
+                <button class="btn-mobile-preview" onclick="openMockup()">👁️ Voir le terminal</button>
+                <button class="btn-state active" onclick="loadDemo('public', this, 'Aucun feedback')"><span style="background:#6a8eff;"></span> 1. Scan Public : Consultation</button>
+                <button class="btn-state" onclick="loadDemo('valid', this, 'Bip Court')"><span style="background:#05c46b;"></span> 2. Scan Staff : Valide</button>
+                <button class="btn-state" onclick="loadDemo('early', this, 'Bip Notif')"><span style="background:#3c40c6;"></span> 3. Scan Staff : Trop Tôt</button>
+                <button class="btn-state" onclick="loadDemo('used', this, 'Alarme')"><span style="background:#ffa502;"></span> 4. Scan Staff : Déjà Utilisé</button>
+                <button class="btn-state" onclick="loadDemo('expired', this, 'Son Sourd')"><span style="background:#485460;"></span> 5. Scan Staff : Expiré</button>
+                <button class="btn-state" onclick="loadDemo('invalid', this, 'Buzzer')"><span style="background:#ff3f34;"></span> 6. Scan Staff : Invalide</button>
+                <button class="btn-state" onclick="loadDemo('scanner', this, 'Mode Caméra')"><span style="background:#ffffff; box-shadow:0 0 10px white;"></span> 7. Terminal de Scan (Direct)</button>
+                <div id="sensorFeedback"><i class="fas fa-signal"></i> <span id="sensorText">Feedback : Aucun</span></div>
+            </div>
+            
+            <div class="phone-container-desktop">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <iframe id="previewFrameDesktop" src="" style="width:100%; height:100%; border:none; background:#000;"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contactSection">
+        <div class="section-title reveal">
+            <h2>Déployer la solution</h2>
+            <!-- AJOUT DE LA PHRASE ICI -->
+            <p>
+               Passez à une gestion d’accès d’exception, alliant performance, sécurité et excellence opérationnelle.
+               Bénéficiez d’un accompagnement expert et sur mesure, conçu pour répondre aux standards les plus exigeants de vos événements.
+            </p>
+        </div>
+        <div class="form-card reveal">
+            <form id="contactForm">
+                <div class="form-group"><label>Nom / Structure</label><input type="text" id="name" placeholder="Votre nom" required></div>
+                <div class="form-group"><label>E-mail ou WhatsApp</label><input type="text" id="contact_id" placeholder="Pour vous recontacter" required></div>
+                <div class="form-group"><label>Objet</label><input type="text" id="subject" placeholder="Nature du projet" required></div>
+                <div class="form-group"><label>Détails</label><textarea id="content" rows="4" placeholder="Décrivez vos besoins..." required></textarea></div>
+                <button type="submit" class="btn-send" id="submitBtn">Envoyez ➔</button>
+            </form>
+            <div id="feedback" style="margin-top:20px; display:none; text-align:center; font-weight:700;"></div>
+        </div>
+    </section>
+
+    <footer class="final-footer">
+        <div class="footer-contacts">
+            <a href="https://wa.me/2290158585657" class="f-contact" target="_blank"><i class="fab fa-whatsapp"></i> +229 01 58 58 56 57</a>
+            <a href="mailto:proeliteservice@gmail.com" class="f-contact"><i class="far fa-envelope"></i> proeliteservice@gmail.com</a>
+            <a href="mailto:jbillcataria@gmail.com" class="f-contact"><i class="far fa-envelope"></i> jbillcataria@gmail.com</a>
+        </div>
+        <div class="copyright">&copy; 2025 ProElites-Services • Event-Control System • Tous droits réservés</div>
+    </footer>
+
+    <div class="phone-overlay" id="phonePopup" onclick="closeMockup(event)">
+        <div class="close-area"><i class="fas fa-times"></i></div>
+        <div class="phone-mockup" onclick="event.stopPropagation()">
+            <div class="phone-notch"></div>
+            <iframe id="previewFrameMobile" src="" style="width:100%; height:100%; border:none; background:#000;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 50) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+
+        const demos = {
+            public: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&display=swap" rel="stylesheet"><style>body{margin:0;padding:30px;background-color:#121212;color:white;font-family:'Outfit',sans-serif;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}.icon-lock{font-size:80px;margin-bottom:20px;filter:drop-shadow(0 0 20px rgba(50,100,255,0.5));}h1{text-transform:uppercase;font-size:28px;margin:0 0 10px 0;color:#6a8eff;}p{font-size:16px;opacity:0.8;line-height:1.5;max-width:300px;}.status-box{margin-top:30px;border:1px dashed rgba(255,255,255,0.3);padding:15px 30px;border-radius:12px;background:rgba(255,255,255,0.05);}.status-text{color:#00ff88;font-weight:800;text-transform:uppercase;letter-spacing:1px;}</style></head><body><div class="icon-lock">🔒</div><h1>Lecture Protégée</h1><p>Ce QR code est sécurisé. Il ne peut être validé que par les scanners officiels de l'événement.</p><div class="status-box"><div>État du billet :</div><div class="status-text">EN ATTENTE DE SCAN</div></div><p style="font-size:12px;margin-top:40px;opacity:0.5;">Présentez ce code à l'entrée pour validation.</p></body></html>`,
+            valid: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"><style>body{margin:0;padding:0;font-family:'Poppins',sans-serif;background-color:#05c46b;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;}.icon-circle{width:120px;height:120px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 0 0 0 rgba(255,255,255,0.7);animation:pulse-green 1.5s infinite;}h1{font-size:32px;font-weight:800;margin:0;text-transform:uppercase;letter-spacing:1px;}.card-info{background:white;color:#333;width:80%;border-radius:15px;padding:20px;margin-top:30px;box-shadow:0 10px 30px rgba(0,0,0,0.2);text-align:left;}.label{font-size:11px;color:#888;text-transform:uppercase;font-weight:700;margin-bottom:2px;}.value{font-size:18px;font-weight:700;margin-bottom:15px;color:#000;}@keyframes pulse-green{0%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(255,255,255,0.7)}70%{transform:scale(1);box-shadow:0 0 0 20px rgba(255,255,255,0)}100%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(255,255,255,0)}}</style></head><body><div class="icon-circle"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#05c46b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><h1>VALIDE</h1><p>Accès Autorisé</p><div class="card-info"><div class="label">INVITÉ</div><div class="value">JEAN KOSSI</div><div class="label">CATÉGORIE</div><div class="value">VIP GOLD</div><div class="label">SIÈGE / ZONE</div><div class="value" style="margin-bottom:0;">ZONE A - RANG 2</div></div></body></html>`,
+            early: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet"><style>html,body{height:100%;margin:0;padding:0;overflow:hidden;background:#000;font-family:'Outfit',sans-serif;}body{background:radial-gradient(circle at top left,#3c40c6,transparent),#0a0a0a;display:flex;align-items:center;justify-content:center;padding:15px;text-align:center;}.elite-card{width:90%;background:rgba(255,255,255,0.05);backdrop-filter:blur(25px);border:1px solid rgba(255,255,255,0.15);border-radius:40px;padding:30px 20px;display:flex;flex-direction:column;align-items:center;}h1{font-size:26px;font-weight:900;text-transform:uppercase;margin:0;color:#fff;}.timer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;margin:25px 0;}.time-unit{background:rgba(0,0,0,0.2);padding:10px 5px;border-radius:15px;}.num{display:block;font-size:22px;font-weight:900;color:#fff;}.lab{font-size:8px;text-transform:uppercase;opacity:0.5;}</style></head><body><div class="elite-card"><div style="font-size:40px;margin-bottom:10px;">⏳</div><h1>Patience...</h1><div class="timer-grid"><div class="time-unit"><span class="num">09</span><span class="lab">Jours</span></div><div class="time-unit"><span class="num">12</span><span class="lab">Hrs</span></div><div class="time-unit"><span class="num">44</span><span class="lab">Min</span></div><div class="time-unit"><span class="num">05</span><span class="lab">Sec</span></div></div><div style="font-size:14px;opacity:0.7;">Chill Event • 31 Décembre</div><div style="margin-top:25px;background:#fff;color:#3c40c6;padding:10px 20px;border-radius:50px;font-size:10px;font-weight:900;text-transform:uppercase;">BILLET EN ATTENTE</div></div></body></html>`,
+            used: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"><style>body{margin:0;padding:0;font-family:'Inter',sans-serif;background-color:#ffa502;color:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}.card{background:white;color:#333;border-radius:16px;padding:25px;text-align:left;width:85%;}.t-item{position:relative;padding-left:30px;margin-bottom:20px;border-left:2px solid #eee;}.dot{position:absolute;left:-6px;top:0;width:10px;height:10px;border-radius:50%;background:#2ed573;}h1{font-size:32px;font-weight:900;margin:0;text-transform:uppercase;}</style></head><body><div style="font-size:60px;margin-bottom:10px;">⚠️</div><h1>DÉJÀ UTILISÉ</h1><div class="card"><div class="t-item"><div class="dot"></div><div style="font-weight:800;">19H34 (Validé)</div><div style="font-size:12px;opacity:0.6;">Déjà Passé</div></div><div class="t-item" style="border-left:2px dashed #ddd;margin-bottom:0;"><div class="dot" style="background:#ff4757;"></div><div style="font-weight:800;color:#ff4757;">20H15 (Maintenant)</div><div style="font-size:12px;opacity:0.6;">Tentative de doublon</div></div><div style="margin-top:20px;padding-top:15px;border-top:1px solid #eee;text-align:center;font-weight:900;font-size:18px;">JEAN KOSSI</div></div></body></html>`,
+            expired: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet"><style>body{margin:0;padding:0;font-family:'Outfit',sans-serif;background-color:#1e272e;color:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}.expired-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);width:85%;border-radius:20px;padding:30px 20px;text-align:left;}.label{font-size:10px;color:#576574;text-transform:uppercase;font-weight:700;}.value{font-size:15px;font-weight:700;color:#d2dae2;margin-bottom:10px;}</style></head><body><div style="font-size:80px;margin-bottom:20px;">⌛</div><h1>BILLET EXPIRÉ</h1><div class="expired-card"><div class="label">NOM DU CLIENT</div><div class="value">JEAN KOSSI</div><div class="label">DATE DE VALIDITÉ</div><div class="value" style="color:#ff7675;">JUSQU'AU 31 DÉC 2025</div><div class="label">ÉTAT</div><div class="value">PÉRIMÉ</div></div></body></html>`,
+            invalid: `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet"><style>body{margin:0;padding:0;font-family:'Outfit',sans-serif;background-color:#000;color:white;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:shake-screen 0.5s;}.icon-danger{width:100px;height:100px;background:#ff3f34;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;border:4px solid white;}h1{font-size:38px;font-weight:900;margin:0;color:#ff3f34;text-transform:uppercase;}@keyframes shake-screen{10%,90%{transform:translate3d(-2px,0,0)}20%,80%{transform:translate3d(4px,0,0)}30%,70%{transform:translate3d(-6px,0,0)}}.det{text-align:left;background:rgba(0,0,0,0.3);padding:15px;border-radius:10px;font-family:monospace;border:1px solid #ff3f34;width:80%;margin-top:20px;}</style></head><body><div class="icon-danger"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><h1>ACCÈS REFUSÉ</h1><div class="det">> STATUS: INVALID<br>> ID: #UNK_928<br>> ACTION: BLOCK</div></body></html>`,
+            scanner: `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>GOD'S CONTROL • Terminal Officiel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"><\/script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+<style>
+    :root { --accent: #00ffa2; --error: #ff4757; --warning: #ffa502; }
+    body { margin: 0; padding: 0; background: #000; color: white; font-family: 'Outfit', sans-serif; height: 100vh; overflow: hidden; }
+    #reader { position: fixed; top: 0; left: 0; width: 100% !important; height: 100% !important; z-index: 1; }
+    #reader video { object-fit: cover !important; width: 100% !important; height: 100% !important; }
+    #reader__scan_region {
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 40px !important;
+        box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.7) !important;
+        background: linear-gradient(to right, var(--accent) 4px, transparent 4px) 0 0, linear-gradient(to bottom, var(--accent) 4px, transparent 4px) 0 0, linear-gradient(to left, var(--accent) 4px, transparent 4px) 100% 0, linear-gradient(to bottom, var(--accent) 4px, transparent 4px) 100% 0, linear-gradient(to left, var(--accent) 4px, transparent 4px) 100% 100%, linear-gradient(to top, var(--accent) 4px, transparent 4px) 100% 100%, linear-gradient(to right, var(--accent) 4px, transparent 4px) 0 100%, linear-gradient(to top, var(--accent) 4px, transparent 4px) 0 100% !important;
+        background-repeat: no-repeat !important; background-size: 40px 40px !important;
+    }
+    #reader__scan_region fieldset { border: none !important; }
+    #status-label { position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%); z-index: 100; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; background: rgba(0,0,0,0.6); padding: 10px 25px; border-radius: 12px; font-size: 14px; pointer-events: none; border: 1px solid rgba(255,255,255,0.1); width: max-content; max-width: 90%; text-align: center; }
+    .torch-btn { position: fixed; top: 25px; right: 25px; width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 50%; z-index: 101; display: none; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; }
+    .torch-btn.active { background: var(--accent); border-color: var(--accent); }
+    .start-overlay { position: fixed; inset: 0; background: #000; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+    
+    /* MODIFICATION RESPONSIVE ICI */
+    .start-overlay h1 { margin-bottom: 30px; letter-spacing: clamp(1px, 1vw, 5px); font-weight: 900; font-size: clamp(24px, 7vw, 40px); line-height: 1.2; text-align: center; }
+    .btn-main { background: var(--accent); color: #000; padding: 18px 8vw; width: auto; max-width: 90%; border-radius: 50px; font-weight: 900; border: none; font-size: clamp(12px, 4vw, 16px); text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+    
+    #offline-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px; backdrop-filter: blur(15px); }
+    .offline-icon { font-size: clamp(40px, 10vw, 60px); color: var(--warning); margin-bottom: 20px; animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: 0.3; } }
+    .btn-retry { margin-top: 30px; background: #fff; color: #000; padding: 12px 25px; border-radius: 10px; font-weight: 800; border: none; cursor: pointer; font-size: clamp(12px, 3.5vw, 14px); }
+    #resultPopup { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(15px); background: rgba(0,0,0,0.7); }
+    .result-card { width: 92%; max-width: 400px; height: 78vh; background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 35px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.8); position: relative; }
+    #loadingSpinner { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; flex-direction: column; align-items: center; z-index: 5; }
+    .spinner { width: 50px; height: 50px; border: 3px solid rgba(0, 255, 162, 0.1); border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; filter: drop-shadow(0 0 5px var(--accent)); }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    #iframe-container { flex-grow: 1; position: relative; z-index: 6; background: transparent; }
+    .btn-next { background: #fff; color: #000; padding: 22px; font-weight: 900; text-align: center; cursor: pointer; text-transform: uppercase; font-size: 16px; z-index: 10; }
+    #reader__dashboard_section_csr, #reader__status_span, button.html5-qrcode-element { display: none !important; }
+</style>
+</head>
+<body>
+    <div id="reader"></div>
+    <div id="status-label">Prêt au scan</div>
+    <div id="offline-overlay">
+        <div class="offline-icon">📡</div>
+        <h1 style="color:var(--warning); margin:0; font-size: clamp(20px, 6vw, 30px);">SIGNAL INSTABLE</h1>
+        <p style="opacity:0.7; margin-top:15px; font-size: clamp(12px, 4vw, 16px);">La connexion est trop faible ou absente.<br>Vérifiez votre connexion internet et réessayez.</p>
+        <button class="btn-retry" onclick="checkDataFlow()">VÉRIFIER À NOUVEAU</button>
+    </div>
+    <div id="torchBtn" class="torch-btn" onclick="toggleTorch()">
+        <svg width="20" viewBox="0 0 24 24" fill="white"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <div id="startScreen" class="start-overlay">
+        <h1>GOD'S CONTROL</h1>
+        <button class="btn-main" onclick="startScanner()">ACTIVER LE SCANNER</button>
+    </div>
+    <div id="resultPopup">
+        <div class="result-card">
+            <div id="loadingSpinner"><div class="spinner"></div><p style="margin-top:15px; font-weight:800; font-size:11px; letter-spacing:2px; color:var(--accent);">VERIFICATION...</p></div>
+            <div id="iframe-container"></div>
+            <div class="btn-next" onclick="closeResult()">➔ Suivant</div>
+        </div>
+    </div>
+    <script>
+        const html5QrCode = new Html5Qrcode("reader");
+        const popup = document.getElementById('resultPopup');
+        const iframeContainer = document.getElementById('iframe-container');
+        const loader = document.getElementById('loadingSpinner');
+        const torchBtn = document.getElementById('torchBtn');
+        const offlineOverlay = document.getElementById('offline-overlay');
+        let isScanning = false;
+        let isFlashOn = false;
+        let loadTimeout;
+        const WEBHOOK_ID = "tzhbiv335htmhuhcxakjj6nzudo5e1j7";
+        const SECRET_KEY = "CHILL_ACCESS_2025_SECURE";
+
+        async function checkDataFlow() {
+            try {
+                const controller = new AbortController();
+                setTimeout(() => controller.abort(), 3000);
+                await fetch('https://api.qrserver.com/v1/create-qr-code/?size=1x1&data=ping', { signal: controller.signal, mode: 'no-cors' });
+                offlineOverlay.style.display = 'none';
+                return true;
+            } catch (e) {
+                offlineOverlay.style.display = 'flex';
+                return false;
+            }
+        }
+        window.addEventListener('offline', () => offlineOverlay.style.display = 'flex');
+        window.addEventListener('online', checkDataFlow);
+
+        function playSound(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const g = ctx.createGain();
+                osc.connect(g); g.connect(ctx.destination);
+                osc.frequency.value = type === 'error' ? 150 : 880;
+                g.gain.value = 0.05;
+                osc.start(); setTimeout(() => osc.stop(), 100);
+            } catch(e) {}
+        }
+        
+        function createAndLoadIframe(url, isSrcDoc = false) {
+            popup.style.display = 'flex';
+            loader.style.display = 'flex';
+            iframeContainer.innerHTML = ''; 
+            const newIframe = document.createElement('iframe');
+            newIframe.style.cssText = 'width:100%; height:100%; border:none; background:transparent; opacity:0; transition:opacity 0.3s ease;';
+            if (isSrcDoc) { 
+                newIframe.srcdoc = url; 
+            } else { 
+                newIframe.src = url;
+                loadTimeout = setTimeout(() => {
+                    if (loader.style.display !== 'none') {
+                        loader.style.display = 'none';
+                        alert("⚠️ Le serveur Make ne répond pas. Vérifiez votre connexion.");
+                        closeResult();
+                    }
+                }, 8000);
+            }
+            newIframe.onload = () => {
+                clearTimeout(loadTimeout);
+                loader.style.display = 'none';
+                newIframe.style.opacity = '1';
+            };
+            iframeContainer.appendChild(newIframe);
+        }
+
+        async function startScanner() {
+            const isOnline = await checkDataFlow();
+            if (!isOnline) return;
+            document.getElementById('startScreen').style.display = 'none';
+            torchBtn.style.display = 'flex';
+            html5QrCode.start(
+                { facingMode: "environment" },
+                { fps: 30, qrbox: (w,h) => { let s = Math.min(w,h)*0.65; return {width:s, height:s} } },
+                async (text) => {
+                    if (isScanning) return;
+                    if (!navigator.onLine) {
+                        playSound('error');
+                        offlineOverlay.style.display = 'flex';
+                        return;
+                    }
+                    isScanning = true;
+                    if (text.includes(WEBHOOK_ID)) {
+                        playSound('success');
+                        if (navigator.vibrate) navigator.vibrate(100);
+                        let finalUrl = text + (text.includes("?") ? "&" : "?") + "app_key=" + SECRET_KEY + "&_t=" + Date.now(); 
+                        createAndLoadIframe(finalUrl);
+                    } 
+                    else {
+                        playSound('error');
+                        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+                        const errorHTML = '<html><head><style>body{margin:0;padding:0;background:#000;color:#ff4757;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;padding:30px;}h1{font-size:26px;}p{color:#fff;opacity:.6;}.tag{margin-top:30px;background:rgba(255,71,87,.1);color:#ff4757;padding:10px 25px;border-radius:12px;border:1px solid rgba(255,71,87,.3);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;}</style></head><body><div style="font-size:80px;margin-bottom:20px;">🚫</div><h1>Ticket Hors Système</h1><p>Ce QR Code n est pas un billet officiel. La signature numérique est invalide ou non repertorié</p><div class="tag">Protocole God\\\'s Control</div></body></html>';
+                        createAndLoadIframe(errorHTML, true);
+                    }
+                }
+            ).catch(err => alert("Erreur Caméra. Autorisation échouée"));
+        }
+        async function toggleTorch() {
+            try {
+                isFlashOn = !isFlashOn;
+                await html5QrCode.applyVideoConstraints({ advanced: [{ torch: isFlashOn }] });
+                torchBtn.classList.toggle('active');
+            } catch (e) {}
+        }
+        function closeResult() {
+            clearTimeout(loadTimeout);
+            popup.style.display = 'none';
+            iframeContainer.innerHTML = ''; 
+            loader.style.display = 'none';
+            setTimeout(() => { isScanning = false; }, 200);
+        }
+    <\/script>
+</body>
+</html>
+            `
+        };
+
+        function loadDemo(state, btn, feedback, autoOpen = true) {
+            const btns = document.querySelectorAll('.btn-state');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('sensorText').innerText = "Feedback : " + feedback;
+            
+            const frameDesktop = document.getElementById('previewFrameDesktop');
+            const frameMobile = document.getElementById('previewFrameMobile');
+            
+            // --- LOGIQUE ANTI-FLASH ---
+            if(frameDesktop) {
+                frameDesktop.style.opacity = '0';
+                setTimeout(() => {
+                    frameDesktop.srcdoc = demos[state];
+                    frameDesktop.onload = () => { frameDesktop.style.opacity = '1'; };
+                }, 50);
+            }
+
+            if(frameMobile) {
+                frameMobile.style.opacity = '0';
+                setTimeout(() => {
+                    frameMobile.srcdoc = demos[state];
+                    frameMobile.onload = () => { frameMobile.style.opacity = '1'; };
+                }, 50);
+            }
+
+            if (window.innerWidth <= 850 && autoOpen) {
+                openMockup();
+            }
+        }
+
+        function openMockup() {
+            if (window.innerWidth <= 850) {
+                document.getElementById('phonePopup').classList.add('active');
+            }
+        }
+
+        function closeMockup(event) {
+            document.getElementById('phonePopup').classList.remove('active');
+        }
+
+        window.onload = () => { 
+            loadDemo('public', document.querySelector('.btn-state'), 'Aucun', false); 
+            reveal(); 
+        };
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const feedback = document.getElementById('feedback');
+            const webhookUrl = "https://hook.eu2.make.com/452613egl7y9b5lqt1bftc9v0new1xbd"; 
+            btn.disabled = true; btn.innerText = "Transmission...";
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: document.getElementById('name').value,
+                    contact: document.getElementById('contact_id').value,
+                    subject: document.getElementById('subject').value,
+                    content: document.getElementById('content').value,
+                    timestamp: new Date().toISOString()
+                })
+            }).then(() => {
+                feedback.style.display = "block"; feedback.style.color = "#00ffa2";
+                feedback.innerText = "✓ Demande transmise avec succès. On vous recontacte sou peu.";
+                document.getElementById('contactForm').reset();
+            }).finally(() => {
+                btn.disabled = false; btn.innerText = "Transmettre ma demande ➔";
+            });
+        });
+    </script>
+</body>
+</html>
